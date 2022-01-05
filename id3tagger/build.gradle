@@ -1,0 +1,13 @@
+plugins {
+    id "org.sickert.id3tagger.java-library-conventions"
+}
+
+dependencies {
+    implementation "org.apache.commons:commons-lang3"
+    implementation "commons-io:commons-io"
+    implementation "com.google.guava:guava"
+    implementation "org:jaudiotagger"
+    implementation "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider"
+    implementation "org.glassfish.jersey.core:jersey-client"
+    implementation "org.glassfish.jersey.inject:jersey-hk2"
+}

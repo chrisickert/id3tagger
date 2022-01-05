@@ -1,0 +1,5 @@
+plugins {
+    id "org.sickert.id3tagger.java-common-conventions"
+    id "application"
+    id "com.github.johnrengelman.shadow"
+}

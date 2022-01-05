@@ -1,0 +1,26 @@
+plugins {
+    id "org.sickert.id3tagger.java-application-conventions"
+}
+
+dependencies {
+    implementation project(":id3tagger")
+    implementation "commons-cli:commons-cli"
+}
+
+def mainClass = "org.sickert.id3tagger.cli.Id3TaggerCommandLineClient"
+
+application {
+    mainClass = "${mainClass}"
+}
+
+jar {
+    manifest {
+        attributes(
+            "Main-Class": "${mainClass}"
+        )
+    }
+}
+
+shadowJar {
+    mainClassName = "${mainClass}"
+}

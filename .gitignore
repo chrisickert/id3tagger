@@ -1,0 +1,8 @@
+# ignore Gradle project-specific directories
+.gradle
+
+# ignore IDE specific files
+.vscode
+
+# ignore build output directories
+build

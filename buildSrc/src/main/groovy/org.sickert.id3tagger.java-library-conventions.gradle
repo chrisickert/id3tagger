@@ -1,0 +1,4 @@
+plugins {
+    id "org.sickert.id3tagger.java-common-conventions"
+    id "java-library"
+}

@@ -1,0 +1,2 @@
+rootProject.name = 'id3tagger'
+include('cli', 'id3tagger')
