@@ -23,7 +23,8 @@ public class MusicBrainzService implements SongInfoService {
   private static final String SERVICE_URL = "http://musicbrainz.org/ws/2";
 
   // Custom user-agent string to comply with MusicBrainz' rules
-  private static final String USER_AGENT = "org.sickert.id3tagger (https://github.com/chrisickert/id3tagger)";
+  private static final String USER_AGENT =
+      "org.sickert.id3tagger (https://github.com/chrisickert/id3tagger)";
   // TODO: Make this more flexible and add version number
 
   private static final String ARTIST_SERVICE = SERVICE_URL + "/artist";
@@ -51,13 +52,15 @@ public class MusicBrainzService implements SongInfoService {
   public org.sickert.id3tagger.songinfoservice.Artist findArtist(@Nonnull String name) {
     String query = MessageFormat.format("\"{0}\"", name);
     Map<String, String> queryParams = ImmutableMap.of("query", query);
-    ArtistList artistList = query(ARTIST_SERVICE, queryParams, ArtistList.class, MAX_ARTISTS_TO_CONSIDER);
+    ArtistList artistList =
+        query(ARTIST_SERVICE, queryParams, ArtistList.class, MAX_ARTISTS_TO_CONSIDER);
 
     if (artistList == null || !artistList.hasEntities()) {
       return null;
     }
 
-    // Sometimes there is more than one artist with the given name. Collect and use all of them in subsequent queries.
+    // Sometimes there is more than one artist with the given name. Collect and use all of them in
+    // subsequent queries.
     Artist firstArtist = artistList.getFirstEntity();
     List<String> artistIds = new ArrayList<>(1);
     artistList
@@ -141,9 +144,9 @@ public class MusicBrainzService implements SongInfoService {
       @Nonnull String serviceUrl,
       @Nonnull Map<String, String> queryParams,
       @Nonnull Class<T> entityListType) {
-        return query(serviceUrl, queryParams, entityListType, Integer.MAX_VALUE);
-    }
-  
+    return query(serviceUrl, queryParams, entityListType, Integer.MAX_VALUE);
+  }
+
   @Nullable
   private <T extends EntityList<?>> T query(
       @Nonnull String serviceUrl,
@@ -174,11 +177,11 @@ public class MusicBrainzService implements SongInfoService {
           break;
         }
         this.sleep(retryDelayMillis);
-        retryDelayMillis = 2*retryDelayMillis;
+        retryDelayMillis = 2 * retryDelayMillis;
       }
       if (response.getStatus() != Response.Status.OK.getStatusCode()) {
         // TODO: Provide a hint that the entity list is incomplete
-        return completeEntityList;     // incomplete actually ...
+        return completeEntityList; // incomplete actually ...
       }
 
       // read entity list and merge with previous one, if any
@@ -189,13 +192,13 @@ public class MusicBrainzService implements SongInfoService {
         completeEntityList.addEntities(entityList.getEntities());
       }
 
-      // decide whether further requests are necessary to read all entities and shrink result list, if necessary
+      // decide whether further requests are necessary to read all entities and shrink result list,
+      // if necessary
       int numOfAllEntities = Integer.parseInt(completeEntityList.getAllEntitiesCount());
       if (completeEntityList.size() > maxResults) {
         completeEntityList.shrink(maxResults);
         break;
-      }
-      else if (completeEntityList.size() >= numOfAllEntities) {
+      } else if (completeEntityList.size() >= numOfAllEntities) {
         break;
       }
     }
