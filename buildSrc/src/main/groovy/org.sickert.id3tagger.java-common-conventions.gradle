@@ -7,7 +7,6 @@ repositories {
     mavenCentral()
 }
 
-def commonsCliVersion = "1.5.0"
 def commonsIoVersion = "2.11.0"
 def commonsLangVersion = "3.12.0"
 def guavaVersion = "31.0.1-jre"
@@ -23,7 +22,6 @@ dependencies {
         implementation "com.google.code.findbugs:jsr305:${jsr305Version}"
         implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
         implementation "commons-io:commons-io:${commonsIoVersion}"
-        implementation "commons-cli:commons-cli:${commonsCliVersion}"
         implementation "com.google.guava:guava:${guavaVersion}"
         implementation "org:jaudiotagger:${jaudiotaggerVersion}"
         implementation "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jacksonJsonVersion}"

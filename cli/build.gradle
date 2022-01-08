@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
     implementation project(":id3tagger")
-    implementation "commons-cli:commons-cli"
     implementation "info.picocli:picocli"
  
     annotationProcessor "info.picocli:picocli-codegen"
