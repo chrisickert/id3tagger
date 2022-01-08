@@ -16,6 +16,7 @@ def jaudiotaggerVersion = "2.0.3"
 def jerseyVersion = "2.35"
 def jsr305Version = "3.0.2"
 def junitVersion = "5.7.2"
+def picoCliVersion = "4.6.2"
 
 dependencies {
     constraints {
@@ -28,6 +29,9 @@ dependencies {
         implementation "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jacksonJsonVersion}"
         implementation "org.glassfish.jersey.core:jersey-client:${jerseyVersion}"
         implementation "org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}"
+        implementation "info.picocli:picocli:${picoCliVersion}"
+        
+        annotationProcessor "info.picocli:picocli-codegen:${picoCliVersion}"
     }
 
     implementation "com.google.code.findbugs:jsr305"
