@@ -4,10 +4,16 @@ plugins {
 
 dependencies {
     implementation project(":id3tagger")
-    implementation "commons-cli:commons-cli"
+    implementation "info.picocli:picocli"
+ 
+    annotationProcessor "info.picocli:picocli-codegen"
 }
 
-def mainClass = "org.sickert.id3tagger.cli.Id3TaggerCommandLineClient"
+compileJava {
+    options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
+}
+
+def mainClass = "org.sickert.id3tagger.cli.Id3Tagger"
 
 application {
     mainClass = "${mainClass}"
